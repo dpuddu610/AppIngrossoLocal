@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ingrosso.controller.ListiniController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Listini Prezzi" styleClass="page-title"/>
+            <Label text="Gestione listini acquisto e vendita" styleClass="page-subtitle"/>
+        </VBox>
+        <Button text="Nuovo Listino" styleClass="button-primary" onAction="#nuovoListino"/>
+    </HBox>
+
+    <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.35">
+        <!-- Lista Listini -->
+        <VBox spacing="12">
+            <TableView fx:id="tblListini" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colCodice" text="Codice" minWidth="80"/>
+                    <TableColumn fx:id="colNome" text="Nome" minWidth="150"/>
+                    <TableColumn fx:id="colTipo" text="Tipo" minWidth="80"/>
+                    <TableColumn fx:id="colValidita" text="Validita'" minWidth="120"/>
+                    <TableColumn fx:id="colAttivo" text="Attivo" minWidth="60"/>
+                </columns>
+                <placeholder>
+                    <Label text="Nessun listino configurato"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+        <!-- Dettaglio Listino -->
+        <VBox spacing="12">
+            <padding>
+                <Insets left="16"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label fx:id="lblListinoSelezionato" text="Seleziona un listino" styleClass="card-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnModificaListino" text="Modifica" styleClass="button-outline" onAction="#modificaListino"/>
+            </HBox>
+
+            <HBox styleClass="toolbar" spacing="12" alignment="CENTER_LEFT">
+                <TextField fx:id="txtSearchPrezzi" promptText="Cerca prodotto..." prefWidth="200" onKeyReleased="#handleSearchPrezzi"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Importa CSV" styleClass="button-outline" onAction="#importaCsv"/>
+            </HBox>
+
+            <TableView fx:id="tblPrezzi" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colProdottoCodice" text="Codice" minWidth="100"/>
+                    <TableColumn fx:id="colProdottoNome" text="Prodotto" minWidth="200"/>
+                    <TableColumn fx:id="colPrezzo" text="Prezzo" minWidth="100"/>
+                    <TableColumn fx:id="colDataInizio" text="Dal" minWidth="100"/>
+                    <TableColumn fx:id="colDataFine" text="Al" minWidth="100"/>
+                </columns>
+                <placeholder>
+                    <Label text="Nessun prezzo configurato"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+    </SplitPane>
+</VBox>

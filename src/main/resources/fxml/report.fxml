@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ingrosso.controller.ReportController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Header -->
+    <VBox spacing="4">
+        <Label text="Report" styleClass="page-title"/>
+        <Label text="Generazione report e statistiche" styleClass="page-subtitle"/>
+    </VBox>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Report List -->
+        <VBox styleClass="card" spacing="12" prefWidth="300">
+            <Label text="Report Disponibili" styleClass="card-title"/>
+
+            <ListView fx:id="lstReport" VBox.vgrow="ALWAYS">
+                <placeholder>
+                    <Label text="Nessun report disponibile"/>
+                </placeholder>
+            </ListView>
+        </VBox>
+
+        <!-- Report Config and Preview -->
+        <VBox styleClass="card" spacing="16" HBox.hgrow="ALWAYS">
+            <Label fx:id="lblReportTitolo" text="Seleziona un report" styleClass="card-title"/>
+
+            <!-- Filtri comuni -->
+            <VBox fx:id="vboxFiltri" spacing="12">
+                <HBox spacing="16">
+                    <VBox spacing="6" styleClass="form-group">
+                        <Label text="Data Inizio" styleClass="form-label"/>
+                        <DatePicker fx:id="dpDataInizio"/>
+                    </VBox>
+                    <VBox spacing="6" styleClass="form-group">
+                        <Label text="Data Fine" styleClass="form-label"/>
+                        <DatePicker fx:id="dpDataFine"/>
+                    </VBox>
+                    <VBox spacing="6" styleClass="form-group">
+                        <Label text="Magazzino" styleClass="form-label"/>
+                        <ComboBox fx:id="cmbMagazzino" prefWidth="200"/>
+                    </VBox>
+                    <VBox spacing="6" styleClass="form-group">
+                        <Label text="Categoria" styleClass="form-label"/>
+                        <ComboBox fx:id="cmbCategoria" prefWidth="200"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="8">
+                    <Button text="Genera Report" styleClass="button-primary" onAction="#generaReport"/>
+                    <Button text="Esporta PDF" styleClass="button-outline" onAction="#esportaPdf"/>
+                    <Button text="Esporta Excel" styleClass="button-outline" onAction="#esportaExcel"/>
+                </HBox>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Preview area -->
+            <ScrollPane fx:id="scrollPreview" VBox.vgrow="ALWAYS" fitToWidth="true">
+                <VBox fx:id="vboxPreview" spacing="12">
+                    <Label text="Seleziona un report e clicca 'Genera Report'" styleClass="text-muted"/>
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </HBox>
+</VBox>

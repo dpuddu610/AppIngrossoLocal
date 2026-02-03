@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ingrosso.controller.ProdottoDialogController"
+            prefWidth="600">
+
+    <content>
+        <ScrollPane fitToWidth="true">
+            <VBox spacing="16">
+                <padding>
+                    <Insets top="16" right="16" bottom="16" left="16"/>
+                </padding>
+
+                <!-- Codici -->
+                <HBox spacing="16">
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Codice *" styleClass="form-label"/>
+                        <HBox spacing="8">
+                            <TextField fx:id="txtCodice" HBox.hgrow="ALWAYS"/>
+                            <Button text="Genera" onAction="#generaCodice" styleClass="button-outline"/>
+                        </HBox>
+                    </VBox>
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Barcode" styleClass="form-label"/>
+                        <TextField fx:id="txtBarcode"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Nome e descrizione -->
+                <VBox spacing="6" styleClass="form-group">
+                    <Label text="Nome *" styleClass="form-label"/>
+                    <TextField fx:id="txtNome"/>
+                </VBox>
+
+                <VBox spacing="6" styleClass="form-group">
+                    <Label text="Descrizione" styleClass="form-label"/>
+                    <TextArea fx:id="txtDescrizione" prefRowCount="2"/>
+                </VBox>
+
+                <!-- Categoria e unita misura -->
+                <HBox spacing="16">
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Categoria" styleClass="form-label"/>
+                        <ComboBox fx:id="cmbCategoria" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Sottocategoria" styleClass="form-label"/>
+                        <ComboBox fx:id="cmbSottocategoria" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Unita' di Misura *" styleClass="form-label"/>
+                        <ComboBox fx:id="cmbUnitaMisura" maxWidth="Infinity"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Prezzi -->
+                <HBox spacing="16">
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Prezzo Acquisto" styleClass="form-label"/>
+                        <TextField fx:id="txtPrezzoAcquisto"/>
+                    </VBox>
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Prezzo Vendita" styleClass="form-label"/>
+                        <TextField fx:id="txtPrezzoVendita"/>
+                    </VBox>
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Aliquota IVA %" styleClass="form-label"/>
+                        <TextField fx:id="txtAliquotaIva"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Scorte -->
+                <HBox spacing="16">
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Scorta Minima" styleClass="form-label"/>
+                        <TextField fx:id="txtScortaMinima"/>
+                    </VBox>
+                    <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                        <Label text="Scorta Massima" styleClass="form-label"/>
+                        <TextField fx:id="txtScortaMassima"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Opzioni -->
+                <HBox spacing="16" alignment="CENTER_LEFT">
+                    <CheckBox fx:id="chkGestisceLotti" text="Gestisce Lotti"/>
+                    <CheckBox fx:id="chkAttivo" text="Attivo"/>
+                </HBox>
+
+                <!-- Note -->
+                <VBox spacing="6" styleClass="form-group">
+                    <Label text="Note" styleClass="form-label"/>
+                    <TextArea fx:id="txtNote" prefRowCount="2"/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </content>
+
+    <buttonTypes>
+        <ButtonType fx:constant="OK"/>
+        <ButtonType fx:constant="CANCEL"/>
+    </buttonTypes>
+</DialogPane>
