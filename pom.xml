@@ -5,12 +5,12 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.preventivi</groupId>
-    <artifactId>gestione-preventivi</artifactId>
+    <groupId>com.ingrosso</groupId>
+    <artifactId>gestione-ingrosso</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Gestione Preventivi</name>
-    <description>Applicazione desktop per la gestione dei preventivi - Falegnameria</description>
+    <name>Gestione Ingrosso</name>
+    <description>Applicazione desktop per la gestione ingrosso con database MySQL</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,17 +19,21 @@
         <javafx.version>21.0.2</javafx.version>
         <poi.version>5.2.5</poi.version>
         <openpdf.version>1.3.35</openpdf.version>
+        <hikaricp.version>5.1.0</hikaricp.version>
+        <mysql.version>8.2.0</mysql.version>
+        <bcrypt.version>0.10.2</bcrypt.version>
+        <zxing.version>3.5.2</zxing.version>
     </properties>
 
     <dependencies>
-        <!-- JavaFX Controls (include javafx-base e javafx-graphics) -->
+        <!-- JavaFX Controls -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- JavaFX FXML per caricamento file FXML -->
+        <!-- JavaFX FXML -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
@@ -43,28 +47,73 @@
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- Apache POI per lettura/scrittura file Excel (.xlsx) -->
+        <!-- MySQL Connector -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <!-- HikariCP Connection Pool -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikaricp.version}</version>
+        </dependency>
+
+        <!-- BCrypt for password hashing -->
+        <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>${bcrypt.version}</version>
+        </dependency>
+
+        <!-- ZXing for barcode support -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>${zxing.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>${zxing.version}</version>
+        </dependency>
+
+        <!-- Apache POI for Excel export -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
         </dependency>
 
-        <!-- OpenPDF per generazione documenti PDF -->
+        <!-- OpenPDF for PDF generation -->
         <dependency>
             <groupId>com.github.librepdf</groupId>
             <artifactId>openpdf</artifactId>
             <version>${openpdf.version}</version>
         </dependency>
 
-        <!-- Apache PDFBox per rendering PDF come immagini (anteprima) -->
+        <!-- Apache PDFBox for PDF rendering -->
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
             <version>3.0.1</version>
         </dependency>
 
-        <!-- JUnit 5 per testing -->
+        <!-- SLF4J for logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+
+        <!-- JUnit 5 for testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -87,13 +136,13 @@
                 </configuration>
             </plugin>
 
-            <!-- JavaFX Maven Plugin per esecuzione -->
+            <!-- JavaFX Maven Plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.preventivi.Launcher</mainClass>
+                    <mainClass>com.ingrosso/com.ingrosso.Launcher</mainClass>
                 </configuration>
             </plugin>
 
@@ -105,13 +154,13 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.preventivi.Launcher</mainClass>
+                            <mainClass>com.ingrosso.Launcher</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
 
-            <!-- Maven Shade Plugin per creare JAR eseguibile con dipendenze -->
+            <!-- Maven Shade Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -125,7 +174,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.preventivi.Launcher</mainClass>
+                                    <mainClass>com.ingrosso.Launcher</mainClass>
                                 </transformer>
                             </transformers>
                             <filters>

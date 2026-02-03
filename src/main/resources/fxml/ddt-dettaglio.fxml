@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ingrosso.controller.DdtDettaglioController"
+      spacing="16" prefWidth="900" prefHeight="700">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="DDT N." styleClass="page-title"/>
+                <Label fx:id="lblNumero" styleClass="page-title"/>
+            </HBox>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="Stato:" styleClass="text-muted"/>
+                <Label fx:id="lblStato" styleClass="badge"/>
+            </HBox>
+        </VBox>
+        <Button fx:id="btnSalva" text="Salva Bozza" styleClass="button-outline" onAction="#salvaBozza"/>
+        <Button fx:id="btnEmetti" text="Emetti DDT" styleClass="button-primary" onAction="#emettiDdt"/>
+        <Button fx:id="btnAnnulla" text="Annulla" styleClass="button-danger" onAction="#annullaDdt"/>
+    </HBox>
+
+    <!-- Form -->
+    <HBox spacing="16">
+        <!-- Left column -->
+        <VBox spacing="12" HBox.hgrow="ALWAYS">
+            <HBox spacing="16">
+                <VBox spacing="6" styleClass="form-group" prefWidth="150">
+                    <Label text="Data *" styleClass="form-label"/>
+                    <DatePicker fx:id="dpData" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Destinatario" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbDestinatario" maxWidth="Infinity"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="6" styleClass="form-group">
+                <Label text="Destinazione Diversa" styleClass="form-label"/>
+                <TextField fx:id="txtDestinazioneDiversa"/>
+            </VBox>
+
+            <HBox spacing="16">
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Magazzino *" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbMagazzino" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Causale Trasporto" styleClass="form-label"/>
+                    <TextField fx:id="txtCausale" text="Vendita"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Right column -->
+        <VBox spacing="12" HBox.hgrow="ALWAYS">
+            <HBox spacing="16">
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Aspetto Beni" styleClass="form-label"/>
+                    <TextField fx:id="txtAspettoBeni"/>
+                </VBox>
+                <VBox spacing="6" styleClass="form-group" prefWidth="100">
+                    <Label text="Colli" styleClass="form-label"/>
+                    <TextField fx:id="txtColli"/>
+                </VBox>
+                <VBox spacing="6" styleClass="form-group" prefWidth="100">
+                    <Label text="Peso Kg" styleClass="form-label"/>
+                    <TextField fx:id="txtPeso"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="16">
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Porto" styleClass="form-label"/>
+                    <TextField fx:id="txtPorto" text="Franco"/>
+                </VBox>
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Vettore" styleClass="form-label"/>
+                    <TextField fx:id="txtVettore"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="6" styleClass="form-group">
+                <Label text="Note" styleClass="form-label"/>
+                <TextArea fx:id="txtNote" prefRowCount="2"/>
+            </VBox>
+        </VBox>
+    </HBox>
+
+    <!-- Add row -->
+    <HBox styleClass="toolbar" spacing="12" alignment="CENTER_LEFT">
+        <ComboBox fx:id="cmbProdotto" promptText="Seleziona prodotto..." prefWidth="300"/>
+        <TextField fx:id="txtQuantitaRiga" promptText="Qta" prefWidth="80"/>
+        <TextField fx:id="txtPrezzoRiga" promptText="Prezzo" prefWidth="100"/>
+        <Button text="Aggiungi" styleClass="button-primary" onAction="#aggiungiRiga"/>
+    </HBox>
+
+    <!-- Righe table -->
+    <TableView fx:id="tblRighe" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colProdotto" text="Codice" minWidth="100"/>
+            <TableColumn fx:id="colDescrizione" text="Descrizione" minWidth="250"/>
+            <TableColumn fx:id="colQuantita" text="Quantita'" minWidth="100"/>
+            <TableColumn fx:id="colUM" text="U.M." minWidth="60"/>
+            <TableColumn fx:id="colPrezzo" text="Prezzo" minWidth="100"/>
+            <TableColumn fx:id="colAzioni" text="" minWidth="60"/>
+        </columns>
+        <placeholder>
+            <Label text="Nessuna riga inserita"/>
+        </placeholder>
+    </TableView>
+</VBox>

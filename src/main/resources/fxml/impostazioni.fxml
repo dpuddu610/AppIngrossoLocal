@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ingrosso.controller.ImpostazioniController"
+            fitToWidth="true">
+
+    <VBox spacing="24">
+        <padding>
+            <Insets top="24" right="24" bottom="24" left="24"/>
+        </padding>
+
+        <!-- Header -->
+        <VBox spacing="4">
+            <Label text="Impostazioni" styleClass="page-title"/>
+            <Label text="Configurazione sistema" styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- Tabs -->
+        <TabPane VBox.vgrow="ALWAYS">
+            <!-- Dati Azienda -->
+            <Tab text="Dati Azienda" closable="false">
+                <VBox spacing="16">
+                    <padding>
+                        <Insets top="16" right="16" bottom="16" left="16"/>
+                    </padding>
+
+                    <HBox spacing="16">
+                        <VBox spacing="16" HBox.hgrow="ALWAYS">
+                            <VBox spacing="6" styleClass="form-group">
+                                <Label text="Nome Azienda" styleClass="form-label"/>
+                                <TextField fx:id="txtNomeAzienda"/>
+                            </VBox>
+                            <VBox spacing="6" styleClass="form-group">
+                                <Label text="Indirizzo" styleClass="form-label"/>
+                                <TextField fx:id="txtIndirizzo"/>
+                            </VBox>
+                            <HBox spacing="16">
+                                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                                    <Label text="Citta" styleClass="form-label"/>
+                                    <TextField fx:id="txtCitta"/>
+                                </VBox>
+                                <VBox spacing="6" styleClass="form-group" prefWidth="100">
+                                    <Label text="CAP" styleClass="form-label"/>
+                                    <TextField fx:id="txtCap"/>
+                                </VBox>
+                                <VBox spacing="6" styleClass="form-group" prefWidth="80">
+                                    <Label text="Prov." styleClass="form-label"/>
+                                    <TextField fx:id="txtProvincia"/>
+                                </VBox>
+                            </HBox>
+                            <HBox spacing="16">
+                                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                                    <Label text="P.IVA" styleClass="form-label"/>
+                                    <TextField fx:id="txtPiva"/>
+                                </VBox>
+                                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                                    <Label text="Codice Fiscale" styleClass="form-label"/>
+                                    <TextField fx:id="txtCodiceFiscale"/>
+                                </VBox>
+                            </HBox>
+                            <HBox spacing="16">
+                                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                                    <Label text="Telefono" styleClass="form-label"/>
+                                    <TextField fx:id="txtTelefono"/>
+                                </VBox>
+                                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                                    <Label text="Email" styleClass="form-label"/>
+                                    <TextField fx:id="txtEmail"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                    <Button text="Salva" styleClass="button-primary" onAction="#salvaAzienda"/>
+                </VBox>
+            </Tab>
+
+            <!-- Database -->
+            <Tab text="Database" closable="false">
+                <VBox spacing="16">
+                    <padding>
+                        <Insets top="16" right="16" bottom="16" left="16"/>
+                    </padding>
+
+                    <VBox styleClass="card" spacing="12">
+                        <Label text="Connessione Database" styleClass="card-title"/>
+                        <HBox spacing="16">
+                            <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                                <Label text="Host" styleClass="form-label"/>
+                                <TextField fx:id="txtDbHost"/>
+                            </VBox>
+                            <VBox spacing="6" styleClass="form-group" prefWidth="100">
+                                <Label text="Porta" styleClass="form-label"/>
+                                <TextField fx:id="txtDbPort"/>
+                            </VBox>
+                        </HBox>
+                        <VBox spacing="6" styleClass="form-group">
+                            <Label text="Database" styleClass="form-label"/>
+                            <TextField fx:id="txtDbName"/>
+                        </VBox>
+                        <HBox spacing="16">
+                            <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                                <Label text="Username" styleClass="form-label"/>
+                                <TextField fx:id="txtDbUser"/>
+                            </VBox>
+                            <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                                <Label text="Password" styleClass="form-label"/>
+                                <PasswordField fx:id="txtDbPassword"/>
+                            </VBox>
+                        </HBox>
+                        <HBox spacing="8">
+                            <Button text="Test Connessione" styleClass="button-outline" onAction="#testConnessione"/>
+                            <Button text="Salva" styleClass="button-primary" onAction="#salvaDatabase"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </Tab>
+
+            <!-- Utenti -->
+            <Tab text="Utenti" closable="false">
+                <VBox spacing="16">
+                    <padding>
+                        <Insets top="16" right="16" bottom="16" left="16"/>
+                    </padding>
+
+                    <HBox alignment="CENTER_LEFT">
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Nuovo Utente" styleClass="button-primary" onAction="#nuovoUtente"/>
+                    </HBox>
+
+                    <TableView fx:id="tblUtenti" VBox.vgrow="ALWAYS" minHeight="300">
+                        <columns>
+                            <TableColumn fx:id="colUsername" text="Username" minWidth="120"/>
+                            <TableColumn fx:id="colNome" text="Nome" minWidth="150"/>
+                            <TableColumn fx:id="colCognome" text="Cognome" minWidth="150"/>
+                            <TableColumn fx:id="colRuolo" text="Ruolo" minWidth="120"/>
+                            <TableColumn fx:id="colAttivo" text="Attivo" minWidth="80"/>
+                            <TableColumn fx:id="colAzioni" text="" minWidth="100"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </VBox>
+</ScrollPane>

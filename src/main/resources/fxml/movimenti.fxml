@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ingrosso.controller.MovimentiController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Movimenti" styleClass="page-title"/>
+            <Label text="Storico movimenti magazzino" styleClass="page-subtitle"/>
+        </VBox>
+        <Button text="Nuovo Movimento" styleClass="button-primary" onAction="#nuovoMovimento"/>
+    </HBox>
+
+    <!-- Filters -->
+    <HBox styleClass="toolbar" spacing="12" alignment="CENTER_LEFT">
+        <Label text="Dal:"/>
+        <DatePicker fx:id="dpDataInizio" prefWidth="130" onAction="#handleFilter"/>
+        <Label text="Al:"/>
+        <DatePicker fx:id="dpDataFine" prefWidth="130" onAction="#handleFilter"/>
+        <ComboBox fx:id="cmbMagazzino" promptText="Magazzino" prefWidth="150" onAction="#handleFilter"/>
+        <ComboBox fx:id="cmbTipo" promptText="Tipo" prefWidth="120" onAction="#handleFilter"/>
+        <TextField fx:id="txtProdotto" promptText="Prodotto" prefWidth="150" onKeyReleased="#handleFilter"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Esporta" styleClass="button-outline" onAction="#esporta"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="tblMovimenti" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colData" text="Data" minWidth="130"/>
+            <TableColumn fx:id="colTipo" text="Tipo" minWidth="100"/>
+            <TableColumn fx:id="colCodice" text="Codice" minWidth="100"/>
+            <TableColumn fx:id="colProdotto" text="Prodotto" minWidth="200"/>
+            <TableColumn fx:id="colMagazzino" text="Magazzino" minWidth="120"/>
+            <TableColumn fx:id="colQuantita" text="Quantita" minWidth="100"/>
+            <TableColumn fx:id="colCausale" text="Causale" minWidth="150"/>
+            <TableColumn fx:id="colDocumento" text="Documento" minWidth="120"/>
+            <TableColumn fx:id="colUtente" text="Utente" minWidth="100"/>
+        </columns>
+        <placeholder>
+            <Label text="Nessun movimento trovato"/>
+        </placeholder>
+    </TableView>
+
+    <!-- Status -->
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label fx:id="lblStatus" styleClass="text-muted"/>
+    </HBox>
+</VBox>

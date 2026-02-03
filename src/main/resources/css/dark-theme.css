@@ -1,0 +1,198 @@
+/* Gestione Ingrosso - Dark Theme */
+
+.root {
+    -fx-primary: #3B82F6;
+    -fx-primary-dark: #2563EB;
+    -fx-primary-light: #60A5FA;
+    -fx-success: #22C55E;
+    -fx-success-light: #4ADE80;
+    -fx-warning: #FBBF24;
+    -fx-warning-light: #FCD34D;
+    -fx-danger: #EF4444;
+    -fx-danger-light: #F87171;
+
+    -fx-bg-primary: #1E293B;
+    -fx-bg-secondary: #0F172A;
+    -fx-bg-tertiary: #334155;
+
+    -fx-text-primary: #F8FAFC;
+    -fx-text-secondary: #94A3B8;
+    -fx-text-muted: #64748B;
+
+    -fx-border-color: #334155;
+    -fx-border-color-dark: #475569;
+
+    -fx-background-color: -fx-bg-secondary;
+}
+
+/* Override light theme styles for dark mode */
+
+.sidebar {
+    -fx-background-color: -fx-bg-primary;
+    -fx-border-color: -fx-border-color;
+}
+
+.sidebar-menu-item:hover {
+    -fx-background-color: -fx-bg-tertiary;
+}
+
+.sidebar-menu-item:focused,
+.sidebar-menu-item.selected {
+    -fx-background-color: derive(-fx-primary, -60%);
+}
+
+.sidebar-menu-item .label {
+    -fx-text-fill: -fx-text-primary;
+}
+
+.card {
+    -fx-background-color: -fx-bg-primary;
+    -fx-border-color: -fx-border-color;
+}
+
+.kpi-card {
+    -fx-background-color: -fx-bg-primary;
+    -fx-border-color: -fx-border-color;
+}
+
+.button {
+    -fx-background-color: -fx-bg-tertiary;
+    -fx-text-fill: -fx-text-primary;
+}
+
+.button:hover {
+    -fx-background-color: -fx-border-color-dark;
+}
+
+.text-field, .text-area, .password-field {
+    -fx-background-color: -fx-bg-tertiary;
+    -fx-border-color: -fx-border-color;
+    -fx-text-fill: -fx-text-primary;
+    -fx-prompt-text-fill: -fx-text-muted;
+}
+
+.text-field:focused, .text-area:focused, .password-field:focused {
+    -fx-background-color: -fx-bg-primary;
+}
+
+.combo-box {
+    -fx-background-color: -fx-bg-tertiary;
+    -fx-border-color: -fx-border-color;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: -fx-text-primary;
+    -fx-background-color: -fx-bg-tertiary;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -fx-bg-primary;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: -fx-bg-tertiary;
+}
+
+.table-view {
+    -fx-background-color: -fx-bg-primary;
+    -fx-border-color: -fx-border-color;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -fx-bg-tertiary;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-text-primary;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: -fx-bg-primary;
+    -fx-border-color: -fx-border-color;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: -fx-bg-secondary;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: derive(-fx-primary, -50%);
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: -fx-bg-tertiary;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: -fx-text-primary;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: -fx-border-color-dark;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: -fx-text-muted;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: -fx-bg-primary;
+}
+
+.tab:selected {
+    -fx-background-color: -fx-bg-tertiary;
+}
+
+.login-container {
+    -fx-background-color: linear-gradient(to bottom right, #1E40AF, #0F172A);
+}
+
+.login-card {
+    -fx-background-color: -fx-bg-primary;
+}
+
+.login-title {
+    -fx-text-fill: -fx-text-primary;
+}
+
+.toolbar {
+    -fx-background-color: -fx-bg-primary;
+    -fx-border-color: -fx-border-color;
+}
+
+.search-box {
+    -fx-background-color: -fx-bg-tertiary;
+}
+
+.search-box:focused {
+    -fx-background-color: -fx-bg-primary;
+}
+
+.dialog-pane {
+    -fx-background-color: -fx-bg-primary;
+}
+
+.dialog-pane .content {
+    -fx-text-fill: -fx-text-primary;
+}
+
+/* Badge overrides for dark theme */
+.badge-success {
+    -fx-background-color: derive(-fx-success, -50%);
+    -fx-text-fill: -fx-success-light;
+}
+
+.badge-warning {
+    -fx-background-color: derive(-fx-warning, -50%);
+    -fx-text-fill: -fx-warning-light;
+}
+
+.badge-danger {
+    -fx-background-color: derive(-fx-danger, -50%);
+    -fx-text-fill: -fx-danger-light;
+}
+
+.badge-info {
+    -fx-background-color: derive(-fx-primary, -50%);
+    -fx-text-fill: -fx-primary-light;
+}

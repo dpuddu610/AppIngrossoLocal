@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ingrosso.controller.DdtController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="DDT" styleClass="page-title"/>
+            <Label text="Documenti di Trasporto" styleClass="page-subtitle"/>
+        </VBox>
+        <Button text="Nuovo DDT" styleClass="button-primary" onAction="#nuovoDdt"/>
+    </HBox>
+
+    <!-- Filters -->
+    <HBox styleClass="toolbar" spacing="12" alignment="CENTER_LEFT">
+        <Label text="Anno:"/>
+        <ComboBox fx:id="cmbAnno" prefWidth="100" onAction="#handleFilter"/>
+        <Label text="Dal:"/>
+        <DatePicker fx:id="dpDataInizio" prefWidth="130" onAction="#handleFilter"/>
+        <Label text="Al:"/>
+        <DatePicker fx:id="dpDataFine" prefWidth="130" onAction="#handleFilter"/>
+        <ComboBox fx:id="cmbStato" promptText="Stato" prefWidth="120" onAction="#handleFilter"/>
+        <TextField fx:id="txtDestinatario" promptText="Destinatario" prefWidth="150" onKeyReleased="#handleFilter"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="tblDdt" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colNumero" text="Numero" minWidth="100"/>
+            <TableColumn fx:id="colData" text="Data" minWidth="100"/>
+            <TableColumn fx:id="colDestinatario" text="Destinatario" minWidth="200"/>
+            <TableColumn fx:id="colStato" text="Stato" minWidth="100"/>
+            <TableColumn fx:id="colRighe" text="Righe" minWidth="60"/>
+            <TableColumn fx:id="colMagazzino" text="Magazzino" minWidth="120"/>
+            <TableColumn fx:id="colAzioni" text="" minWidth="150"/>
+        </columns>
+        <placeholder>
+            <Label text="Nessun DDT trovato"/>
+        </placeholder>
+    </TableView>
+
+    <!-- Status -->
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label fx:id="lblStatus" styleClass="text-muted"/>
+    </HBox>
+</VBox>

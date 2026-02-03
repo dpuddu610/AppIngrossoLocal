@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ingrosso.controller.MagazzinoController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Magazzino" styleClass="page-title"/>
+            <Label text="Situazione giacenze" styleClass="page-subtitle"/>
+        </VBox>
+        <Label text="Magazzino:" styleClass="form-label"/>
+        <ComboBox fx:id="cmbMagazzino" prefWidth="200" onAction="#handleMagazzinoChange"/>
+    </HBox>
+
+    <!-- Filters -->
+    <HBox styleClass="toolbar" spacing="12" alignment="CENTER_LEFT">
+        <TextField fx:id="txtSearch" promptText="Cerca prodotto..."
+                   prefWidth="250" onKeyReleased="#handleSearch"/>
+        <ComboBox fx:id="cmbCategoria" promptText="Categoria" prefWidth="150" onAction="#handleFilter"/>
+        <CheckBox fx:id="chkSottoScorta" text="Solo sotto scorta" onAction="#handleFilter"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Esporta" styleClass="button-outline" onAction="#esporta"/>
+        <Button text="Inventario" styleClass="button-outline" onAction="#inventario"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="tblGiacenze" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCodice" text="Codice" minWidth="100"/>
+            <TableColumn fx:id="colNome" text="Prodotto" minWidth="200"/>
+            <TableColumn fx:id="colCategoria" text="Categoria" minWidth="120"/>
+            <TableColumn fx:id="colGiacenza" text="Giacenza" minWidth="100"/>
+            <TableColumn fx:id="colUM" text="U.M." minWidth="60"/>
+            <TableColumn fx:id="colMinimo" text="Minimo" minWidth="80"/>
+            <TableColumn fx:id="colValoreAcq" text="Valore Acq." minWidth="100"/>
+            <TableColumn fx:id="colValoreVend" text="Valore Vend." minWidth="100"/>
+        </columns>
+        <placeholder>
+            <Label text="Nessuna giacenza trovata"/>
+        </placeholder>
+    </TableView>
+
+    <!-- Summary -->
+    <HBox styleClass="card" alignment="CENTER_LEFT" spacing="24">
+        <VBox spacing="2">
+            <Label text="Totale Prodotti" styleClass="form-label"/>
+            <Label fx:id="lblTotaleProdotti" text="0" style="-fx-font-weight: bold;"/>
+        </VBox>
+        <Separator orientation="VERTICAL"/>
+        <VBox spacing="2">
+            <Label text="Valore Acquisto" styleClass="form-label"/>
+            <Label fx:id="lblValoreAcquisto" text="0,00" style="-fx-font-weight: bold;"/>
+        </VBox>
+        <Separator orientation="VERTICAL"/>
+        <VBox spacing="2">
+            <Label text="Valore Vendita" styleClass="form-label"/>
+            <Label fx:id="lblValoreVendita" text="0,00" style="-fx-font-weight: bold;"/>
+        </VBox>
+        <Separator orientation="VERTICAL"/>
+        <VBox spacing="2">
+            <Label text="Sotto Scorta" styleClass="form-label"/>
+            <Label fx:id="lblSottoScorta" text="0" style="-fx-font-weight: bold; -fx-text-fill: #DC2626;"/>
+        </VBox>
+    </HBox>
+</VBox>

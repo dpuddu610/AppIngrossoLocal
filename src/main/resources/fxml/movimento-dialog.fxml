@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ingrosso.controller.MovimentoDialogController"
+            prefWidth="500">
+
+    <content>
+        <VBox spacing="16">
+            <padding>
+                <Insets top="16" right="16" bottom="16" left="16"/>
+            </padding>
+
+            <HBox spacing="16">
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Tipo Movimento *" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbTipo" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Magazzino *" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbMagazzino" maxWidth="Infinity"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="6" styleClass="form-group">
+                <Label fx:id="lblMagazzinoDestinazione" text="Magazzino Destinazione *" styleClass="form-label"/>
+                <ComboBox fx:id="cmbMagazzinoDestinazione" maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="6" styleClass="form-group">
+                <Label text="Prodotto *" styleClass="form-label"/>
+                <ComboBox fx:id="cmbProdotto" maxWidth="Infinity"/>
+            </VBox>
+
+            <HBox spacing="16">
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Lotto" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbLotto" maxWidth="Infinity" disable="true"/>
+                </VBox>
+                <VBox spacing="6" styleClass="form-group" prefWidth="150">
+                    <Label text="Quantita' *" styleClass="form-label"/>
+                    <TextField fx:id="txtQuantita"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="16">
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Causale" styleClass="form-label"/>
+                    <TextField fx:id="txtCausale"/>
+                </VBox>
+                <VBox spacing="6" styleClass="form-group" HBox.hgrow="ALWAYS">
+                    <Label text="Documento Rif." styleClass="form-label"/>
+                    <TextField fx:id="txtDocumentoRif"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="6" styleClass="form-group">
+                <Label text="Note" styleClass="form-label"/>
+                <TextArea fx:id="txtNote" prefRowCount="3"/>
+            </VBox>
+        </VBox>
+    </content>
+
+    <buttonTypes>
+        <ButtonType fx:constant="OK"/>
+        <ButtonType fx:constant="CANCEL"/>
+    </buttonTypes>
+</DialogPane>

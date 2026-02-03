@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ingrosso.controller.MainController"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar">
+            <!-- Header -->
+            <VBox styleClass="sidebar-header" alignment="CENTER_LEFT">
+                <Label text="Gestione Ingrosso" styleClass="sidebar-logo"/>
+            </VBox>
+
+            <!-- Menu -->
+            <VBox fx:id="sidebarMenu" styleClass="sidebar-menu" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnDashboard" text="Dashboard" styleClass="sidebar-menu-item"
+                        onAction="#showDashboard" maxWidth="Infinity"/>
+                <Button fx:id="btnProdotti" text="Prodotti" styleClass="sidebar-menu-item"
+                        onAction="#showProdotti" maxWidth="Infinity"/>
+                <Button fx:id="btnMagazzino" text="Magazzino" styleClass="sidebar-menu-item"
+                        onAction="#showMagazzino" maxWidth="Infinity"/>
+                <Button fx:id="btnMovimenti" text="Movimenti" styleClass="sidebar-menu-item"
+                        onAction="#showMovimenti" maxWidth="Infinity"/>
+                <Button fx:id="btnDdt" text="DDT" styleClass="sidebar-menu-item"
+                        onAction="#showDdt" maxWidth="Infinity"/>
+                <Button fx:id="btnListini" text="Listini" styleClass="sidebar-menu-item"
+                        onAction="#showListini" maxWidth="Infinity"/>
+                <Button fx:id="btnReport" text="Report" styleClass="sidebar-menu-item"
+                        onAction="#showReport" maxWidth="Infinity"/>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <Separator/>
+                <Button fx:id="btnImpostazioni" text="Impostazioni" styleClass="sidebar-menu-item"
+                        onAction="#showImpostazioni" maxWidth="Infinity"/>
+            </VBox>
+
+            <!-- User Info -->
+            <VBox styleClass="sidebar-footer" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="12" right="16" bottom="12" left="16"/>
+                </padding>
+                <Label fx:id="lblCurrentUser" styleClass="text-muted"/>
+                <Hyperlink text="Esci" onAction="#handleLogout"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
+    </center>
+</BorderPane>
