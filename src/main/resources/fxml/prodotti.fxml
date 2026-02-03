@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ingrosso.controller.ProdottiController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Prodotti" styleClass="page-title"/>
+            <Label text="Gestione anagrafica prodotti" styleClass="page-subtitle"/>
+        </VBox>
+        <Button text="Nuovo Prodotto" styleClass="button-primary" onAction="#nuovoProdotto"/>
+    </HBox>
+
+    <!-- Filters -->
+    <HBox styleClass="toolbar" spacing="12" alignment="CENTER_LEFT">
+        <TextField fx:id="txtSearch" promptText="Cerca per codice, barcode o nome..."
+                   prefWidth="300" onKeyReleased="#handleSearch"/>
+        <ComboBox fx:id="cmbCategoria" promptText="Categoria" prefWidth="150" onAction="#handleFilter"/>
+        <ComboBox fx:id="cmbSottocategoria" promptText="Sottocategoria" prefWidth="150" onAction="#handleFilter"/>
+        <CheckBox fx:id="chkSoloAttivi" text="Solo attivi" selected="true" onAction="#handleFilter"/>
+        <CheckBox fx:id="chkSottoScorta" text="Sotto scorta" onAction="#handleFilter"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Esporta CSV" styleClass="button-outline" onAction="#esportaCsv"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="tblProdotti" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCodice" text="Codice" minWidth="100"/>
+            <TableColumn fx:id="colBarcode" text="Barcode" minWidth="120"/>
+            <TableColumn fx:id="colNome" text="Nome" minWidth="200"/>
+            <TableColumn fx:id="colCategoria" text="Categoria" minWidth="120"/>
+            <TableColumn fx:id="colUM" text="U.M." minWidth="60"/>
+            <TableColumn fx:id="colGiacenza" text="Giacenza" minWidth="80"/>
+            <TableColumn fx:id="colPrezzoAcquisto" text="Prezzo Acq." minWidth="100"/>
+            <TableColumn fx:id="colPrezzoVendita" text="Prezzo Vend." minWidth="100"/>
+            <TableColumn fx:id="colAzioni" text="" minWidth="100"/>
+        </columns>
+        <placeholder>
+            <Label text="Nessun prodotto trovato"/>
+        </placeholder>
+    </TableView>
+
+    <!-- Status bar -->
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label fx:id="lblStatus" styleClass="text-muted"/>
+    </HBox>
+</VBox>

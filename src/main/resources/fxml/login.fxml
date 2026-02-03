@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.ingrosso.controller.LoginController"
+           styleClass="login-container">
+
+    <VBox styleClass="login-card" alignment="CENTER" spacing="20">
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <!-- Logo / Title -->
+        <VBox alignment="CENTER" spacing="8">
+            <Label text="Gestione Ingrosso" styleClass="login-title"/>
+            <Label text="Accedi al sistema" styleClass="login-subtitle"/>
+        </VBox>
+
+        <!-- Login Form -->
+        <VBox spacing="16" maxWidth="300">
+            <padding>
+                <Insets top="20"/>
+            </padding>
+
+            <VBox spacing="6" styleClass="form-group">
+                <Label text="Username" styleClass="form-label"/>
+                <TextField fx:id="usernameField" promptText="Inserisci username"/>
+            </VBox>
+
+            <VBox spacing="6" styleClass="form-group">
+                <Label text="Password" styleClass="form-label"/>
+                <PasswordField fx:id="passwordField" promptText="Inserisci password"
+                               onAction="#handleLogin"/>
+            </VBox>
+
+            <Label fx:id="errorLabel" styleClass="text-danger" visible="false" managed="false"/>
+
+            <Button text="Accedi" styleClass="button-primary" maxWidth="Infinity"
+                    onAction="#handleLogin" fx:id="loginButton">
+                <padding>
+                    <Insets top="12" right="24" bottom="12" left="24"/>
+                </padding>
+            </Button>
+        </VBox>
+
+        <!-- Footer -->
+        <VBox alignment="CENTER" spacing="4">
+            <padding>
+                <Insets top="20"/>
+            </padding>
+            <Label text="v1.0.0" styleClass="text-muted"/>
+        </VBox>
+    </VBox>
+</StackPane>

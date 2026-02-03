@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ingrosso.controller.DashboardController"
+            fitToWidth="true" styleClass="content-scroll">
+
+    <VBox spacing="24">
+        <padding>
+            <Insets top="24" right="24" bottom="24" left="24"/>
+        </padding>
+
+        <!-- Header -->
+        <VBox spacing="4">
+            <Label text="Dashboard" styleClass="page-title"/>
+            <Label text="Panoramica del sistema" styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- KPI Cards -->
+        <HBox spacing="16" alignment="CENTER_LEFT">
+            <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                <Label fx:id="lblTotaleProdotti" text="0" styleClass="kpi-value"/>
+                <Label text="Prodotti Attivi" styleClass="kpi-label"/>
+            </VBox>
+
+            <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                <Label fx:id="lblValoreMagazzino" text="0,00" styleClass="kpi-value"/>
+                <Label text="Valore Magazzino" styleClass="kpi-label"/>
+            </VBox>
+
+            <VBox fx:id="cardSottoScorta" styleClass="kpi-card, warning" HBox.hgrow="ALWAYS">
+                <Label fx:id="lblSottoScorta" text="0" styleClass="kpi-value"/>
+                <Label text="Sotto Scorta" styleClass="kpi-label"/>
+            </VBox>
+
+            <VBox fx:id="cardInScadenza" styleClass="kpi-card, danger" HBox.hgrow="ALWAYS">
+                <Label fx:id="lblInScadenza" text="0" styleClass="kpi-value"/>
+                <Label text="Lotti in Scadenza" styleClass="kpi-label"/>
+            </VBox>
+
+            <VBox styleClass="kpi-card, success" HBox.hgrow="ALWAYS">
+                <Label fx:id="lblDdtMese" text="0" styleClass="kpi-value"/>
+                <Label text="DDT Mese" styleClass="kpi-label"/>
+            </VBox>
+        </HBox>
+
+        <!-- Content Grid -->
+        <HBox spacing="16" VBox.vgrow="ALWAYS">
+            <!-- Left Column -->
+            <VBox spacing="16" HBox.hgrow="ALWAYS">
+                <!-- Prodotti Sotto Scorta -->
+                <VBox styleClass="card" VBox.vgrow="ALWAYS">
+                    <HBox styleClass="card-header" alignment="CENTER_LEFT">
+                        <Label text="Prodotti Sotto Scorta" styleClass="card-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Vedi tutti" styleClass="button-outline" onAction="#showAllSottoScorta"/>
+                    </HBox>
+                    <TableView fx:id="tblSottoScorta" VBox.vgrow="ALWAYS" minHeight="200">
+                        <columns>
+                            <TableColumn fx:id="colSottoCodice" text="Codice" minWidth="80"/>
+                            <TableColumn fx:id="colSottoNome" text="Prodotto" minWidth="150"/>
+                            <TableColumn fx:id="colSottoGiacenza" text="Giacenza" minWidth="80"/>
+                            <TableColumn fx:id="colSottoMinimo" text="Minimo" minWidth="80"/>
+                        </columns>
+                        <placeholder>
+                            <Label text="Nessun prodotto sotto scorta"/>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Right Column -->
+            <VBox spacing="16" HBox.hgrow="ALWAYS">
+                <!-- Lotti in Scadenza -->
+                <VBox styleClass="card" VBox.vgrow="ALWAYS">
+                    <HBox styleClass="card-header" alignment="CENTER_LEFT">
+                        <Label text="Lotti in Scadenza (30gg)" styleClass="card-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Vedi tutti" styleClass="button-outline" onAction="#showAllInScadenza"/>
+                    </HBox>
+                    <TableView fx:id="tblInScadenza" VBox.vgrow="ALWAYS" minHeight="200">
+                        <columns>
+                            <TableColumn fx:id="colScadCodice" text="Codice" minWidth="80"/>
+                            <TableColumn fx:id="colScadProdotto" text="Prodotto" minWidth="150"/>
+                            <TableColumn fx:id="colScadLotto" text="Lotto" minWidth="80"/>
+                            <TableColumn fx:id="colScadData" text="Scadenza" minWidth="100"/>
+                            <TableColumn fx:id="colScadGiorni" text="Giorni" minWidth="60"/>
+                        </columns>
+                        <placeholder>
+                            <Label text="Nessun lotto in scadenza"/>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </HBox>
+
+        <!-- Quick Actions -->
+        <VBox styleClass="card">
+            <HBox styleClass="card-header" alignment="CENTER_LEFT">
+                <Label text="Azioni Rapide" styleClass="card-title"/>
+            </HBox>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="12"/>
+                </padding>
+                <Button text="Nuovo Movimento" styleClass="button-primary" onAction="#nuovoMovimento"/>
+                <Button text="Nuovo DDT" styleClass="button-primary" onAction="#nuovoDdt"/>
+                <Button text="Cerca Prodotto" styleClass="button-outline" onAction="#cercaProdotto"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>
