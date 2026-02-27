@@ -1,0 +1,78 @@
+{
+  "productCode":"N",
+  "customerReferences":[
+    {
+      "value":"Customer reference",
+      "typeCode":"CU"
+    }
+  ],
+  "plannedShippingDateAndTime":"2024-07-03T09:00:00GMT+01:00",
+  "pickup":{
+    "isRequested":false
+  },
+  "outputImageProperties":{
+    "splitTransportAndWaybillDocLabels":true,
+    "encodingFormat":"pdf",
+    "imageOptions":[
+      {
+        "templateName":"ECOM26_84_A4_001",
+        "typeCode":"label"
+      }
+    ]
+  },
+  "accounts":[
+    {
+      "number":"103810005",
+      "typeCode":"shipper"
+    }
+  ],
+  "getRateEstimates":false,
+  "customerDetails":{
+    "shipperDetails":{
+      "postalAddress":{
+        "cityName":"ROMA",
+        "countryCode":"IT",
+        "postalCode":"00143",
+        "addressLine1":"Piazza San Cosimato 3"
+      },
+      "contactInformation":{
+        "phone":"3471111111",
+        "companyName":"DHL TEST ITALY",
+        "fullName":"MARIO ROSSI",
+        "email":"XXXXXINFO@gmail.com"
+      },
+      "typeCode":"direct_consumer"
+    },
+    "receiverDetails":{
+      "postalAddress":{
+        "cityName":"MILANO",
+        "countryCode":"IT",
+        "postalCode":"20121",
+        "addressLine1":"CORSO SEMPIONE 305"
+      },
+      "contactInformation":{
+        "phone":"+39 329 000 0000",
+        "companyName":"Mario Rossi",
+        "fullName":"Mario Rossi",
+        "email":"XXXXXINFO@gmail.com"
+      },
+      "typeCode":"direct_consumer"
+    }
+  },
+  "content":{
+    "unitOfMeasurement":"metric",
+    "isCustomsDeclarable":false,
+    "incoterm":"DAP",
+    "description":"dresses",
+    "packages":[
+      {
+        "weight":20,
+        "dimensions":{
+          "width":55,
+          "length":40,
+          "height":10
+        }
+      }
+    ]
+  }
+}
