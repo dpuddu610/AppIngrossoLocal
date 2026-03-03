@@ -5,7 +5,7 @@ module com.ingrosso {
 
     requires java.sql;
     requires com.zaxxer.hikari;
-    requires at.favre.lib.bcrypt;
+    requires bcrypt;
 
     requires com.google.zxing;
     requires com.google.zxing.javase;

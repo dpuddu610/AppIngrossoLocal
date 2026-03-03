@@ -292,11 +292,11 @@ public class ProdottiController {
     }
 
     private void eliminaProdotto(Prodotto prodotto) {
-        Optional<ButtonType> result = AlertUtil.showConfirmation(
+        boolean confirmed = AlertUtil.showConfirmation(
                 "Conferma eliminazione",
                 "Sei sicuro di voler eliminare il prodotto " + prodotto.getNome() + "?");
 
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (confirmed) {
             // Soft delete - set attivo = false
             prodotto.setAttivo(false);
             prodottoService.saveProdotto(prodotto);

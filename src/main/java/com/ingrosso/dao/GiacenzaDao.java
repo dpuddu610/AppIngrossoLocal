@@ -176,6 +176,10 @@ public class GiacenzaDao extends BaseDao<Giacenza> {
         public String getSottocategoria() { return sottocategoria; }
         public void setSottocategoria(String sottocategoria) { this.sottocategoria = sottocategoria; }
 
+        // Alias getters used by controllers
+        public String getProdotto() { return prodottoNome; }
+        public BigDecimal getGiacenza() { return quantita; }
+
         public boolean isSottoScorta() {
             if (scortaMinima == null || quantita == null) return false;
             return quantita.compareTo(scortaMinima) < 0;

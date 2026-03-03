@@ -166,6 +166,9 @@ public class LottoDao extends BaseDao<Lotto> {
         public int getGiorniAScadenza() { return giorniAScadenza; }
         public void setGiorniAScadenza(int giorniAScadenza) { this.giorniAScadenza = giorniAScadenza; }
 
+        // Alias getter used by controllers
+        public String getProdotto() { return prodottoNome; }
+
         public boolean isScaduto() { return giorniAScadenza < 0; }
     }
 }

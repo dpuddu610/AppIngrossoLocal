@@ -195,6 +195,31 @@ public class DdtService {
         }
     }
 
+    public void loadRighe(Ddt ddt) {
+        if (ddt == null || ddt.getId() <= 0) return;
+        List<DdtRiga> righe = ddtDao.findRigheByDdt(ddt.getId());
+        righe.forEach(this::enrichRiga);
+        ddt.getRighe().setAll(righe);
+    }
+
+    public int getNextNumero(int anno) {
+        return ddtDao.getNextNumero(anno);
+    }
+
+    public boolean emettiDdt(Ddt ddt) {
+        if (ddt == null || ddt.getId() <= 0) return false;
+        return emitDdt(ddt.getId());
+    }
+
+    public byte[] generatePdf(Ddt ddt) {
+        if (ddt == null) return null;
+        if (ddt.getId() > 0) {
+            return generatePdf(ddt.getId());
+        }
+        ConfigAzienda config = utenteDao.getConfigAzienda().orElse(null);
+        return PdfUtil.generateDdtPdf(ddt, config);
+    }
+
     // Destinatari
     public List<Destinatario> getAllDestinatari() {
         return ddtDao.findAllDestinatari();

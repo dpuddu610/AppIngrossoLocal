@@ -58,7 +58,7 @@ public class DatabaseService {
             DatabaseUtil.saveConfig(host, port, database, username, password);
 
             // Initialize schema if needed
-            initializeSchema();
+            initializeSchemaInternal();
 
             initialized = true;
             logger.info("Database service initialized successfully");
@@ -74,7 +74,23 @@ public class DatabaseService {
         return DatabaseUtil.testConnection(host, port, database, username, password);
     }
 
-    private void initializeSchema() {
+    public boolean initializeSchema() {
+        try (InputStream is = getClass().getResourceAsStream("/sql/schema.sql")) {
+            if (is == null) {
+                logger.warn("Schema file not found, skipping initialization");
+                return false;
+            }
+            String schema = new String(is.readAllBytes());
+            executeSchema(schema);
+            logger.info("Database schema initialized (public)");
+            return true;
+        } catch (IOException e) {
+            logger.error("Error reading schema file: {}", e.getMessage());
+            return false;
+        }
+    }
+
+    private void initializeSchemaInternal() {
         try (InputStream is = getClass().getResourceAsStream("/sql/schema.sql")) {
             if (is == null) {
                 logger.warn("Schema file not found, skipping initialization");
@@ -128,6 +144,38 @@ public class DatabaseService {
     public boolean hasConfiguration() {
         Properties config = DatabaseUtil.loadConfig();
         return !config.isEmpty();
+    }
+
+    public boolean configExists() {
+        return hasConfiguration();
+    }
+
+    public Properties loadConfig() {
+        return DatabaseUtil.loadConfig();
+    }
+
+    public boolean testConnection(Properties config) {
+        String host = config.getProperty("db.host", "localhost");
+        int port = Integer.parseInt(config.getProperty("db.port", "3306"));
+        String database = config.getProperty("db.name", config.getProperty("db.database", "gestione_ingrosso"));
+        String username = config.getProperty("db.user", config.getProperty("db.username", "root"));
+        String password = config.getProperty("db.password", "");
+        return testConnection(host, port, database, username, password);
+    }
+
+    public boolean saveConfig(Properties config) {
+        try {
+            String host = config.getProperty("db.host", "localhost");
+            int port = Integer.parseInt(config.getProperty("db.port", "3306"));
+            String database = config.getProperty("db.name", config.getProperty("db.database", "gestione_ingrosso"));
+            String username = config.getProperty("db.user", config.getProperty("db.username", "root"));
+            String password = config.getProperty("db.password", "");
+            DatabaseUtil.saveConfig(host, port, database, username, password);
+            return true;
+        } catch (Exception e) {
+            logger.error("Error saving database config: {}", e.getMessage());
+            return false;
+        }
     }
 
     public String getHost() {

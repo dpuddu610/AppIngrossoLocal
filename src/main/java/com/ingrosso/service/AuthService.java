@@ -2,11 +2,13 @@ package com.ingrosso.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.ingrosso.dao.UtenteDao;
+import com.ingrosso.model.ConfigAzienda;
 import com.ingrosso.model.Ruolo;
 import com.ingrosso.model.Utente;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AuthService {
@@ -27,32 +29,32 @@ public class AuthService {
         return instance;
     }
 
-    public boolean login(String username, String password) {
+    public Optional<Utente> login(String username, String password) {
         Optional<Utente> utenteOpt = utenteDao.findByUsername(username);
 
         if (utenteOpt.isEmpty()) {
             logger.warn("Login failed: user not found - {}", username);
-            return false;
+            return Optional.empty();
         }
 
         Utente utente = utenteOpt.get();
 
         if (!utente.isAttivo()) {
             logger.warn("Login failed: user disabled - {}", username);
-            return false;
+            return Optional.empty();
         }
 
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), utente.getPasswordHash());
 
         if (!result.verified) {
             logger.warn("Login failed: invalid password - {}", username);
-            return false;
+            return Optional.empty();
         }
 
         currentUser = utente;
         utenteDao.updateUltimoAccesso(utente.getId());
         logger.info("User logged in: {}", username);
-        return true;
+        return Optional.of(utente);
     }
 
     public void logout() {
@@ -148,5 +150,30 @@ public class AuthService {
         }
 
         return null;
+    }
+
+    public Optional<ConfigAzienda> getConfigAzienda() {
+        return utenteDao.getConfigAzienda();
+    }
+
+    public boolean saveConfigAzienda(ConfigAzienda config) {
+        return utenteDao.saveConfigAzienda(config);
+    }
+
+    public List<Utente> getAllUtenti() {
+        return utenteDao.findAllActive();
+    }
+
+    public boolean saveUtente(Utente utente) {
+        if (utente.getId() > 0) {
+            return utenteDao.update(utente);
+        } else {
+            return utenteDao.insert(utente) > 0;
+        }
+    }
+
+    public boolean updatePassword(int userId, String newPassword) {
+        String newHash = hashPassword(newPassword);
+        return utenteDao.updatePassword(userId, newHash);
     }
 }

@@ -89,6 +89,10 @@ public class AlertUtil {
         });
     }
 
+    public static boolean showConfirmation(String title, String message) {
+        return showConfirm(title, null, message);
+    }
+
     public static boolean showConfirm(String title, String message) {
         return showConfirm(title, null, message);
     }

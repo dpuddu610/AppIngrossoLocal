@@ -314,11 +314,11 @@ public class DdtDettaglioController {
             return;
         }
 
-        Optional<ButtonType> result = AlertUtil.showConfirmation(
+        boolean confirmed = AlertUtil.showConfirmation(
                 "Conferma emissione",
                 "Emettendo il DDT verra' scaricata la merce dal magazzino. Continuare?");
 
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (confirmed) {
             updateDdtFromForm();
 
             if (ddtService.emettiDdt(ddt)) {
@@ -334,11 +334,11 @@ public class DdtDettaglioController {
 
     @FXML
     public void annullaDdt() {
-        Optional<ButtonType> result = AlertUtil.showConfirmation(
+        boolean confirmed = AlertUtil.showConfirmation(
                 "Conferma annullamento",
                 "Sei sicuro di voler annullare questo DDT?");
 
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (confirmed) {
             if (ddtService.annullaDdt(ddt.getId())) {
                 ddt.setStato(StatoDdt.ANNULLATO);
                 AlertUtil.showInfo("Annullato", "DDT annullato");

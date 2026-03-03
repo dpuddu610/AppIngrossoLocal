@@ -73,6 +73,14 @@ public class ListinoService {
         return false;
     }
 
+    public List<ListinoPrezzo> getPrezziByListino(int listinoId) {
+        List<ListinoPrezzo> prezzi = listinoDao.findPrezziByListino(listinoId);
+        prezzi.forEach(p -> {
+            prodottoDao.findById(p.getProdottoId()).ifPresent(p::setProdotto);
+        });
+        return prezzi;
+    }
+
     // Prezzi
     public Optional<BigDecimal> getPrezzoCorrente(int listinoId, int prodottoId) {
         return listinoDao.findPrezzoCorrente(listinoId, prodottoId)
@@ -87,6 +95,10 @@ public class ListinoService {
             prezzo = prodotto.map(Prodotto::getPrezzoVendita).orElse(null);
         }
         return prezzo;
+    }
+
+    public int savePrezzo(ListinoPrezzo prezzo) {
+        return savePrezzo(prezzo, null);
     }
 
     public int savePrezzo(ListinoPrezzo prezzo, Integer utenteId) {

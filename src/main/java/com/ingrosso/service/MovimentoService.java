@@ -39,6 +39,39 @@ public class MovimentoService {
         return movimentoDao.findMovimentiCompleti(dataInizio, dataFine, magazzinoId, tipo);
     }
 
+    public List<MovimentoDao.MovimentoCompleto> getMovimentiCompleti(LocalDate dataInizio, LocalDate dataFine,
+                                                                      Integer magazzinoId, TipoMovimento tipo) {
+        return getMovimenti(dataInizio, dataFine, magazzinoId, tipo);
+    }
+
+    public int registraMovimento(Movimento movimento) {
+        if (movimento.getTipo() == null) return -1;
+        switch (movimento.getTipo()) {
+            case CARICO:
+                return registraCarico(movimento.getProdottoId(), movimento.getMagazzinoId(),
+                        movimento.getQuantita(), movimento.getCausale(), movimento.getDocumentoRif(),
+                        movimento.getLottoId() > 0 ? movimento.getLottoId() : null,
+                        movimento.getUtenteId() > 0 ? movimento.getUtenteId() : null);
+            case SCARICO:
+                return registraScarico(movimento.getProdottoId(), movimento.getMagazzinoId(),
+                        movimento.getQuantita(), movimento.getCausale(), movimento.getDocumentoRif(),
+                        movimento.getLottoId() > 0 ? movimento.getLottoId() : null,
+                        movimento.getUtenteId() > 0 ? movimento.getUtenteId() : null);
+            case RETTIFICA:
+                return registraRettifica(movimento.getProdottoId(), movimento.getMagazzinoId(),
+                        movimento.getQuantita(), movimento.getCausale(),
+                        movimento.getUtenteId() > 0 ? movimento.getUtenteId() : null);
+            case TRASFERIMENTO:
+                return registraTrasferimento(movimento.getProdottoId(), movimento.getMagazzinoId(),
+                        movimento.getMagazzinoDestinazioneId(), movimento.getQuantita(),
+                        movimento.getCausale(),
+                        movimento.getLottoId() > 0 ? movimento.getLottoId() : null,
+                        movimento.getUtenteId() > 0 ? movimento.getUtenteId() : null);
+            default:
+                return -1;
+        }
+    }
+
     public List<Movimento> getMovimentiByProdotto(int prodottoId) {
         return movimentoDao.findByProdotto(prodottoId);
     }

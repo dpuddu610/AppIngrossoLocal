@@ -39,6 +39,10 @@ public class ProdottoService {
         return prodotti;
     }
 
+    public List<Prodotto> getAllProdottiAttivi() {
+        return getAllProdotti();
+    }
+
     public Optional<Prodotto> getProdottoById(int id) {
         Optional<Prodotto> prodottoOpt = prodottoDao.findById(id);
         prodottoOpt.ifPresent(p -> {
@@ -102,6 +106,10 @@ public class ProdottoService {
 
     public String generateProdottoCodice(String prefix) {
         return prodottoDao.generateNextCode(prefix);
+    }
+
+    public String generateNextCodice() {
+        return generateProdottoCodice("PRD");
     }
 
     private void enrichProdotti(List<Prodotto> prodotti) {
